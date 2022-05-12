@@ -24,11 +24,6 @@ class SignUp(views.APIView):
 class Login(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
-# easy way
-# class ShowUserById(generics.RetrieveUpdateAPIView):
-#     serializer_class = UserSerializer
-#     queryset = User.objects.all()
-
 class AdminNotification(views.APIView):
     permission_classes = [permissions.IsAdminUser]
     
@@ -38,6 +33,11 @@ class AdminNotification(views.APIView):
         serializer = UserSerializer(queryset,many=True,context={"request":request})
         return Response(serializer.data)
 
+# easy way
+# class ShowUserById(generics.RetrieveUpdateAPIView):
+#     serializer_class = UserSerializer
+#     queryset = User.objects.all()
+    
 # this will show admin users by its id 
 # admin can approve or reject user by sending patch request
 class ShowUserById(generics.RetrieveUpdateAPIView): 
